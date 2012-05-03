@@ -1,0 +1,54 @@
++--------------------------------------------------+
+| Monome Display Proxy                             |
+| Copyright 2008 Ben Bleything <ben@bleything.net> |
+| Provided under the BSD license.                  |
++--------------------------------------------------+
+
+This is a Processing sketch that listens to OSC messages coming and
+going from a Monome, reacts to them, and then proxies them on to their
+final destination.
+
+Why, you ask?  Well, I have a 40h kit, but I ordered LEDs from China and
+they took forever to get here.  In the meantime, I wanted to use my new
+monome, but I had no way of seeing what pads were lit up.  This app will
+show you what pads are lit up (and what pads are pressed).
+
+To use it, you'll need:
+
+ * Processing: http://processing.org
+ * oscP5 library: http://www.sojamo.de/libraries/oscP5/
+ * A monome setup.  Currently I only support the 40h, though I suppose a
+   64 would work as well.
+
+Here's how to set it up:
+
+ * Install the oscP5 library by unzipping it into your Processing
+   sketches folder (~/Documents/Processing on OSX)
+ * Do the same with Monome Display Proxy
+
+Here's how to run it:
+
+ * Start up MonomeSerial (or whatever the Windows/Linux equivalent is)
+ * Set the Host Port to 7999
+ * Set the Listen Port to 8081
+ * Set orientation to Top (and rotate your Monome if necessary)
+ * Start up Processing and load the Monome Display Proxy sketch
+ * Hit Cmd-R to run the sketch
+ * Start up your Monome app.  Flin is a good option to see how it works.
+ * Set the prefix in MonomeSerial if the app doesn't do it for you
+
+That's it.  You should now see a virtual 40h.  Note that you can't click
+on the buttons, they're only there to show LED state.  When you press a
+button on your physical monome, you should see a black disc appear on the
+same button in the display.
+
+Known Bugs / Issues / Didn't Do Yet:
+
+ * Only supports the 40h (and maybe the 64, I dunno)
+ * High CPU usage due to render strategy
+ * Doesn't (yet) support rotation
+ * Doesn't support input... probably won't as I'm not intending to write
+   an emulator, but we'll see.
+ * Does not yet support the full OSC dictionary... coming soon?
+ * Sometimes cells will get "stuck" on during a transition until the next
+   time that cell is updated.
